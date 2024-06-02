@@ -1,12 +1,14 @@
 import pygame, sys
 import os
 pygame.init()
+# Get current file path
+base_path = os.path.dirname(__file__)
 # Pause game
 pause = False
 # Variables
-num_row = 30
-table_width = 800
-table_height = 800
+num_row = 20
+table_width = 400
+table_height = 400
 information_space = 100
 cell_size = table_height / num_row
 tick_size = cell_size * 0.8
@@ -16,8 +18,8 @@ ma_table = [[-1 for x in range (num_row)] for y in range(num_row)]
 # Some init feature
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((table_width,table_height + information_space))
-x_symbol = pygame.image.load("D:\\Code\\Python\\tictac\\dist\\x.png")
-o_symbol = pygame.image.load("D:\\Code\\Python\\tictac\\dist\\o.png")
+x_symbol = pygame.image.load(base_path + "\\dist\\x.png")
+o_symbol = pygame.image.load(base_path + "\\dist\\o.png")
 x_symbol = pygame.transform.scale(x_symbol, (tick_size, tick_size))
 o_symbol = pygame.transform.scale(o_symbol, (tick_size, tick_size))
 # Method
@@ -168,4 +170,5 @@ while True:
         elif event.type ==  pygame.MOUSEBUTTONDOWN and event.button == 1:
             pause = False
             reset_table()
+    clock.tick(30)
     pygame.display.update()

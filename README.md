@@ -1,1 +1,1 @@
-**Tic-tac game**
+**Python games**
