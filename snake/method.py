@@ -1,5 +1,29 @@
-import pygame
+import pygame, sys
 from variable import *
+
+# Home screen init
+def home_screen_init():
+    play_screen.fill((255,255,255))
+    game_title = failed_font.render("SnakePy", True,(0,0,0))
+    game_title_rect = game_title.get_rect(center=(window_width/2, window_height/2))
+    play_screen.blit(game_title, game_title_rect)
+    game_info = restart_font.render("Press any key to continue", True, (0,0,0))
+    game_info_rect = game_info.get_rect(center=(window_width/2, window_height/2 + 50))
+    play_screen.blit(game_info, game_info_rect)
+# Home screen loop
+def home_screen_loop():
+    home_screen = True
+    home_screen_init()
+    back_ground_music.play(-1)
+    pygame.display.update()
+    while home_screen:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
+                home_screen = False
+                back_ground_music.set_volume(0.4)
+            elif event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
 # Display information of score
 def display_score(sco):
     play_screen.fill((255,255,255),(0,0, window_width, information_space))

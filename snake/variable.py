@@ -2,8 +2,6 @@ import pygame
 import pygame.freetype
 
 pygame.init()
-# Mode game
-difficult = 0.3
 # Size of all frame
 size = 30
 information_space = 50
@@ -21,7 +19,11 @@ restart_font = pygame.font.Font(working_path + "Typographica-Blp5.ttf",20)
 information_font = pygame.font.Font(working_path + "Typographica-Blp5.ttf",20)
 failed_text = failed_font.render("Game over", True, (0,0,0))
 restart_text = restart_font.render("press space to restart", True, (0,0,0))  
-information_font.render
+# Sound load
+eat_apple_sound = pygame.mixer.Sound(working_path + "coin_earning.wav")
+eat_apple_sound.set_volume(0.5)
+snake_hit_wall = pygame.mixer.Sound(working_path + "snake_hit_wall.wav")
+back_ground_music = pygame.mixer.Sound(working_path + "game_background_sound.wav")
 # Apple load
 apple_icon = pygame.image.load(working_path + "apple_image.png")
 apple_icon = pygame.transform.scale(apple_icon,(snake_body_size - block_size_padding, snake_body_size - block_size_padding))

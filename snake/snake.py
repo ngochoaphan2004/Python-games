@@ -1,6 +1,9 @@
 import pygame, sys
 import random
 from method import *
+home_screen_loop()
+# Mode game
+difficult = 0.3   
 # Game variables
 score = 0
 
@@ -15,7 +18,6 @@ reset = False
 list_snake_body = None  
 snake_run_counter = 0.0001
 tail_snake = None
-
 # Apple variable
 apple_init = True
 apple_x = 0
@@ -118,7 +120,6 @@ def apple_init_random():
         x = random.randint(0, size - 1) 
         y = random.randint(0, size - 1)
         check = not apple_not_in_snake(list_snake_body, x, y)
-    print("(",x,"|",y,")")
     return x, y
 # Check snake eat apple
 def is_snake_ate_apple():
@@ -127,6 +128,7 @@ def is_snake_ate_apple():
         apple_x, apple_y = apple_init_random()
         list_snake_body.add()
 
+        eat_apple_sound.play()
         score += 1
         display_score(score)
     else:
@@ -139,6 +141,7 @@ apple_x , apple_y = apple_init_random()
 while True:
     for event in pygame.event.get():
         if event.type is pygame.QUIT:
+            back_ground_music.stop()
             pygame.quit()
             sys.exit()
         elif event.type ==  pygame.KEYDOWN and pre_move:
@@ -146,25 +149,25 @@ while True:
                 match event.key:
                     case pygame.K_a:
                         if not right_move and not left_move:
-                            print("left snake")
+
                             pre_move = False
                             left_move = True
                             right_move = up_move = down_move = False
                     case pygame.K_d:
                         if not left_move and not right_move:
-                            print("right snake")
+
                             pre_move = False
                             right_move = True
                             left_move = up_move = down_move = False
                     case pygame.K_w:
                         if not down_move and not up_move:
-                            print("up snake")
+
                             pre_move = False
                             up_move = True
                             right_move = left_move = down_move = False
                     case pygame.K_s:
                         if not up_move and not down_move:
-                            print("down snake")
+
                             pre_move = False
                             down_move = True
                             right_move = up_move = left_move = False
@@ -195,6 +198,7 @@ while True:
         is_snake_ate_apple()
 
     if failed:
+        snake_hit_wall.play()
         # render transparent picture
         rect = (0,0,window_width,window_height)
         surface = pygame.Surface(pygame.Rect(rect).size, pygame.SRCALPHA)
