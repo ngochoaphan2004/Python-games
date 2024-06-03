@@ -20,7 +20,7 @@ def home_screen_loop():
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                 home_screen = False
-                back_ground_music.set_volume(0.4)
+                back_ground_music.set_volume(0.3)
             elif event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()

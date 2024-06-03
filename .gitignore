@@ -1,2 +1,3 @@
 /.env
 /snake/__pycache__
+/snake/build
